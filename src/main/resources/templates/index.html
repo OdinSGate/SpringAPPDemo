@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="/css/style.css" type="text/css" rel="stylesheet">
+    <!--    <link href="../static/css/bootstrap.min.css" type="text/css" rel="stylesheet">-->
+    <!--    <link href="../static/css/style.css" type="text/css" rel="stylesheet">-->
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <p class="text-white center-vertically">
+                    <span id="userEmail">email</span>
+                    <span class="px-1">with role:</span>
+                    <span id="userRole">role</span>
+                </p>
+            </div>
+            <div class="col-6">
+                <button type="button" class="float-end logout-button" id="logout-button">Logout</button>
+            </div>
+        </div>
+    </div>
+</header>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 p-0" id="menu-left">
+                <div class="tab-content">
+                    <ul class="nav flex-column" id="menu">
+                        <li class="nav-item" id="user-menu">
+                            <a class="nav-link active" data-toggle="pill" href="#tab2"
+                               onclick="switchTab(event, 'tab2')">User</a>
+                        </li>
+                        <li class="nav-item" id="admin-menu">
+                            <a class="nav-link" data-toggle="pill" href="#tab1"
+                               onclick="switchTab(event, 'tab1')">Admin</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-10 tab-content" id="menu-main">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab1">
+                        <h2 class="text-center">Admin panel</h2>
+                        <div class="container">
+                            <ul class="nav nav-tabs" id="myTabs">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab3" href="#content1">Users table</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab4" href="#content2">New user</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="content1">
+                                    <h2 class="text-center">All users</h2>
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="users-table">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>John</td>
+                                            <td>Doe</td>
+                                            <td>john@example.com</td>
+                                            <td>Admin</td>
+                                            <td>
+                                                <button onclick="openModal()">Edit</button>
+                                            </td>
+                                            <td>
+                                                <button onclick="openModalDelete()">Delete</button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- Edit form -->
+                                <div id="modal" class="modal">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2>Edit User</h2>
+                                            <span class="modal-close" onclick="closeModal()">&times;</span>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="id">ID</label>
+                                                    <input type="text" id="id" name="id" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit_first_name">First name</label>
+                                                    <input type="text" id="edit_first_name" name="edit_first_name"
+                                                           required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit_last_name">Last name</label>
+                                                    <input type="text" id="edit_last_name" name="edit_last_name"
+                                                           required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit_email">Email</label>
+                                                    <input type="email" id="edit_email" name="edit_email" required>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="edit_password">Password</label>
+                                                    <input type="password" id="edit_password" name="edit_password"
+                                                           required>
+                                                </div>
+                                                <form>
+                                                    <label>
+                                                        <select name="role" multiple>
+                                                            <option value="role1">Роль 1</option>
+                                                            <option value="role2">Роль 2</option>
+                                                        </select>
+                                                    </label>
+                                                </form>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="save-button" onclick="closeModal()">Close</button>
+                                            <button class="save-button" onclick="saveChanges()">Edit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Delete form -->
+                                <div id="modal_delete" class="modal">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2>Edit User</h2>
+                                            <span class="modal-close" onclick="closeModalDelete()">&times;</span>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="id">ID</label>
+                                                    <input type="text" id="delete_id" name="id" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="delete_first_name">First name</label>
+                                                    <input type="text" id="delete_first_name" name="delete_first_name"
+                                                           disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="delete_last_name">Last name</label>
+                                                    <input type="text" id="delete_last_name" name="delete_last_name"
+                                                           disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="delete_email">Email</label>
+                                                    <input type="email" id="delete_email" name="delete_email" disabled>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="delete_password">Password</label>
+                                                    <input type="password" id="delete_password" name="delete_password"
+                                                           disabled>
+                                                </div>
+                                                <form>
+                                                    <label>
+                                                        <select name="role" multiple disabled>
+                                                            <option value="role1">Роль 1</option>
+                                                            <option value="role2">Роль 2</option>
+                                                        </select>
+                                                    </label>
+                                                </form>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="save-button" onclick="closeModalDelete()">Close</button>
+                                            <button class="save-button" onclick="saveChangesDelete()">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- User form -->
+                                <div class="tab-pane fade show" id="content2">
+                                    <div class="container" id="userForm">
+                                        <h2>Add new user</h2>
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="firstName">First Name:</label>
+                                                <input type="text" class="form-control" id="firstName" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="lastName">Last Name:</label>
+                                                <input type="text" class="form-control" id="lastName" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email:</label>
+                                                <input type="email" class="form-control" id="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Password:</label>
+                                                <input type="password" class="form-control" id="password" required>
+                                            </div>
+                                            <form>
+                                                <label>
+                                                    <select name="role" multiple>
+                                                        <option value="role1">Роль 1</option>
+                                                        <option value="role2">Роль 2</option>
+                                                    </select>
+                                                </label>
+                                            </form>
+                                            <button type="submit" class="btn btn-success">Add new user</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="tab2">
+                        <div class="tab-pane fade show active" id="user_info">
+                            <h2 class="text-center">User information-page</h2>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>John</td>
+                                    <td>Doe</td>
+                                    <td>john@example.com</td>
+                                    <td>Admin</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/script.js"></script>
+</html>

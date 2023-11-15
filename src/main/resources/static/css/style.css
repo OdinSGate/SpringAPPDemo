@@ -1,0 +1,159 @@
+:root {
+    --color1: #343b41;
+    --color2: #f8f8fb;
+    --color3: #007bff;
+}
+header, footer{
+    padding: 0px 0px 0px;
+
+}
+header{
+    background: var(--color1);
+}
+#menu-main{
+    background: var(--color2);
+}
+.tab-content{
+    padding: 15px 0px 0px;
+}
+#myTabContent{
+    padding: 0px;
+}
+.nav-link.active{
+    background: var(--color3);
+    color: white;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+button {
+    padding: 6px 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
+}
+#admin_table, #user_table{
+    border: 1px solid #ccc;
+    width: 80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+#userForm{
+    width: 30%;
+    text-align: center;
+}
+select{
+    width: 200px;
+    height: 40px;
+}
+.btn-success{
+    margin-top: 20px;
+}
+.form-group{
+    margin-bottom: 20px;
+}
+/* Стили для модального окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.modal-close {
+    cursor: pointer;
+}
+
+.modal-body {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+    width: 60%;
+    margin-right: auto;
+    margin-left: auto;
+}
+.form-group input[disabled]{
+    background-color: #eee;
+    cursor: not-allowed;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.save-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.logout-button {
+    background: transparent;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.center-vertically {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    height: 100%;
+}

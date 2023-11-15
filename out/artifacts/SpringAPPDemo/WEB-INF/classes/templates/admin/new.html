@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserList</title>
+</head>
+<body>
+<h1>Добавление пользователя</h1>
+<form th:method="POST" th:action="@{/admin/new}" th:object="${user}">
+    <label for="firstName">Введите имя: </label>
+    <input type="text" th:field="*{firstName}" id="firstName"/>
+    <br/>
+    <label for="lastName">Введите фамилию: </label>
+    <input type="text" th:field="*{lastName}" id="lastName"/>
+    <br/>
+    <label for="email">Введите email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br/>
+    <label for="password">Введите пароль: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br/>
+    <label for="roles">Выберите роль: </label>
+    <select id="roles" name="roles" multiple>
+        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
+    </select>
+    <br/>
+    <input type="submit" value="Создать!"/>
+    <a th:href="@{/admin/users}">Назад</a>
+</form>
+</body>
+</html>

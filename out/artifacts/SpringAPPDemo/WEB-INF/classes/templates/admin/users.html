@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>UserList</title>
+</head>
+<body>
+<h1>Список пользователей</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>LASTNAME</th>
+        <th>EMAIL</th>
+        <th>PASSWORD</th>
+        <th>ROLE</th>
+    </tr>
+    <a th:href="@{/admin/new}">Создать пользователя</a>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.getId()}">ID</td>
+        <td th:text="${user.getFirstName()}">NAME</td>
+        <td th:text="${user.getLastName()}">LASTNAME</td>
+        <td th:text="${user.getEmail()}">EMAIL</td>
+        <td th:text="${user.getPassword()}">PASSWORD</td>
+        <td>
+            <div th:each="role: ${user.roles}">
+                <span th:if="(${role.id} == '1')" th:utext="ADMIN "></span>
+                <span th:if="(${role.id} == '2')" th:utext="USER "></span>
+            </div>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/admin/users/{id}(id=${user.getId()})}">
+                <input type="submit" value="Удалить"/>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/admin/{id}/edit(id=${user.getId()})}">
+                <input type="submit" value="Редактировать"/>
+            </form>
+        </td>
+    </tr>
+    <br/>
+    <a th:href="@{/admin/index}">Назад</a>
+
+</table>
+</body>
+</html>
